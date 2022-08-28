@@ -1,3 +1,43 @@
+#dark {
+  --text: #f3f3f3;
+  --subtext: #cdb5c4;
+  --hiddentext: #856a7c;
+  --primary50: #281420;
+  --primary100: #3e1d30;
+  --primary300: #532c44;
+  --primary400: #74415b;
+  --primary500: #986683;
+}
+
+#light {
+  --text: #532c44;
+  --subtext: #995a80;
+  --hiddentext: #90597fc0;
+  --primary50: #f5bbddb3;
+  --primary100: #986683;
+  --primary300: #74415b;
+  --primary400: #532c44;
+  --primary500: #3e1d30;
+}
+
+.Background {
+  background-color: var(--hiddentext);
+  min-height: 100vh;
+}
+
+.App {
+  max-width: 700px;
+  min-height: 100vh;
+  padding: 7.5% 5% 20%;
+  margin: 0 auto;
+  background-color: var(--primary50);
+  color: var(--text);
+}
+
+.App * {
+  transition: 0.1s;
+}
+
 @font-face {
   font-family: 'ExtraLight';
   src: local('ExtraLight'),

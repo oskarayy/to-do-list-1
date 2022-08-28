@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateTasksList } from '../../redux/tasksSlice';
+import { updateTasksOrder } from '../../store/redux/tasksSlice';
 import { getTasksToRender } from '../../utils/getTasksToRender';
 
 import TasksSorting from './controls/TasksSorting';
@@ -32,13 +32,10 @@ const TaskList = () => {
     dragItem.current = null;
     dragOverItem.current = null;
 
-    dispatch(updateTasksList(updatedList));
+    dispatch(updateTasksOrder(updatedList));
   };
 
-  const { data: tasksToRender, lengths } = getTasksToRender(
-    tasks,
-    tasksRenderType
-  );
+  const { tasksToRender, lengths } = getTasksToRender(tasks, tasksRenderType);
 
   const noTaksContent = (
     <div className='task-list__empty'>
@@ -73,7 +70,9 @@ const TaskList = () => {
         lengths={lengths}
         onClick={saveRenderTypeHandler}
       />
-      {tasksToRender.length === 0 ? noTaksContent : tasksListContent}
+      {!tasksToRender || tasksToRender.length === 0
+        ? noTaksContent
+        : tasksListContent}
     </section>
   );
 };

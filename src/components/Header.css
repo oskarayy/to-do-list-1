@@ -7,29 +7,19 @@ header {
 }
 
 header h2 {
-  font-family: SemiBold;
+  font-family: Regular;
   font-size: 20px;
-  color: var(--subtext);
+  color: var(--primary300);
 }
 
-.theme-switch--dark,
-.theme-switch--light {
+.theme-switch {
   position: relative;
   width: 64px;
   height: 32px;
   border-radius: 32px;
   transition: 0.4s;
-}
-
-.theme-switch--dark {
   background-color: var(--primary100);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1), inset 0 0px 5px rgba(0, 0, 0, 0.5);
-}
-
-.theme-switch--light {
-  background-color: var(--primary500);
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3),
-    inset 0 0px 5px rgba(255, 255, 255, 0.2);
 }
 
 #theme-switch__indicator {
@@ -47,12 +37,16 @@ header h2 {
   transition: 0.4s;
 }
 
-.theme-switch--dark #theme-switch__indicator {
+#dark #theme-switch__indicator {
   transform: scale(0.92) translateX(0);
 }
 
-.theme-switch--light #theme-switch__indicator {
+#light #theme-switch__indicator {
   transform: scale(0.92) translateX(109%);
-  background: linear-gradient(to bottom, var(--primary500), var(--primary400));
+  background: linear-gradient(to bottom, var(--primary100), var(--primary500));
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5), inset 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.theme-switch__indicator__icon {
+  color: #f3f3f3;
 }

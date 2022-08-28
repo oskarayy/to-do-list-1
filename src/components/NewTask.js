@@ -1,10 +1,9 @@
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTask } from '../redux/tasksSlice';
+import { addTask } from '../store/redux/tasksSlice';
 
 import FormButton from './interface/FormButton';
 import './NewTask.css';
-import RemoveBox from './tasks/controls/RemoveBox';
 
 const NewTask = ({ onHideForm }) => {
   const dispatch = useDispatch();
@@ -16,12 +15,16 @@ const NewTask = ({ onHideForm }) => {
   const time = useRef();
   const date = useRef();
 
-  const currentTime = new Date().getTime();
-  const defaultDate = new Date()
+  const currentDate = new Date();
+  const currentTime = currentDate.getTime();
+  const defaultDateValue = currentDate
     .toLocaleDateString()
     .split('.')
     .reverse()
     .join('-');
+  const defaultTimeValue = `${currentDate.getHours()}:${
+    currentDate.getMinutes() + 1
+  }`;
 
   const resetTitleValidation = () => {
     setInputsValid((prevState) => {
@@ -41,7 +44,8 @@ const NewTask = ({ onHideForm }) => {
     const newTask = {
       id: `task-${currentTime}`,
       title: title.current.value,
-      time: dateObject.getTime()
+      time: dateObject.getTime(),
+      isFinished: false
     };
 
     const titleIsValid = title.current.value.trim().length > 1;
@@ -54,7 +58,7 @@ const NewTask = ({ onHideForm }) => {
         time: timeIsValid
       });
 
-    dispatch(addTask(newTask));
+    dispatch(addTask({ task: newTask }));
     onHideForm();
   };
 
@@ -91,14 +95,14 @@ const NewTask = ({ onHideForm }) => {
               id='task-form-time'
               type='time'
               ref={time}
-              defaultValue='12:00'
+              defaultValue={defaultTimeValue}
               onChange={resetTimeValidation}
             />
             <input
               id='task-form-date'
               type='date'
               ref={date}
-              defaultValue={defaultDate}
+              defaultValue={defaultDateValue}
               onChange={resetTimeValidation}
             />
           </div>

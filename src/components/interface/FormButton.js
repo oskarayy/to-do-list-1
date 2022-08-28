@@ -6,7 +6,7 @@ const FormButton = ({ add, onClick }) => {
   return (
     <button
       type={add ? 'submit' : 'button'}
-      onClick={onClick ? onClick : () => {}}
+      onClick={onClick ? onClick : null}
       className='new-task__form__btn'>
       <FontAwesomeIcon
         icon={add ? faAdd : faTrash}

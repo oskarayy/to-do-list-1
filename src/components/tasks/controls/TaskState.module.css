@@ -7,10 +7,10 @@
   width: 22px;
   margin-right: 15px;
   border-radius: 50%;
-  box-shadow: 0 0 4px var(--hiddentext);
   border: 2px solid var(--hiddentext);
-  background-color: var(--hiddentext);
+  background-color: var(--primary400);
   cursor: pointer;
+  transform: 0.3s;
 }
 
 .task__checkbox--finished {

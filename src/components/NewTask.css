@@ -11,7 +11,11 @@
   padding: 10% 5%;
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(20px);
-  animation: showUp 0.4s ease-in forwards;
+  animation: showUp 0.3s ease-in forwards;
+}
+
+#light .new-task {
+  background-color: var(--primary50);
 }
 
 .new-task h2 {
@@ -21,7 +25,7 @@
 
 .new-task p {
   font-family: Light;
-  color: var(--hiddentext);
+  color: var(--subtext);
 }
 
 .new-task__form {
@@ -47,7 +51,7 @@
   margin-bottom: 10px;
   font-family: Medium;
   font-size: 17px;
-  color: var(--subtext);
+  color: var(--text);
 }
 
 .new-task__form__item input,
@@ -62,7 +66,7 @@
   font-size: 16px;
   line-height: 50px;
   text-align: center;
-  color: var(--text);
+  color: #fbc3e4;
   resize: none;
 }
 

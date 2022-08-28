@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { removeTask } from '../../../redux/tasksSlice';
+import { removeTask } from '../../../store/redux/tasksSlice';
 import classes from './RemoveBox.module.css';
 
 const RemoveBox = ({ id }) => {

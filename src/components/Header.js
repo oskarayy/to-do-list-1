@@ -1,28 +1,21 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import ThemeContext from '../store/context/theme-context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import './Header.css';
 
 const Header = () => {
-  const [theme, setTheme] = useState('dark');
-
-  const changeThemeHandler = () => {
-    setTheme((prevState) => {
-      if (prevState === 'dark') return 'light';
-      else return 'dark';
-    });
-  };
+  const { theme, changeTheme } = useContext(ThemeContext);
 
   return (
     <header>
       <h2>Oskar Czerw</h2>
-      <div
-        className={
-          theme === 'dark' ? 'theme-switch--dark' : 'theme-switch--light'
-        }
-        onClick={changeThemeHandler}>
+      <div className={'theme-switch'} onClick={changeTheme}>
         <i id='theme-switch__indicator'>
-          <FontAwesomeIcon icon={theme === 'dark' ? faMoon : faSun} />
+          <FontAwesomeIcon
+            className='theme-switch__indicator__icon'
+            icon={theme === 'dark' ? faMoon : faSun}
+          />
         </i>
       </div>
     </header>
