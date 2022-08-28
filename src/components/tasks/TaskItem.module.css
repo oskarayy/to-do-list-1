@@ -1,0 +1,38 @@
+.task,
+.task--finished {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  background-color: var(--primary300);
+}
+
+.task--finished {
+  opacity: 0.4;
+}
+
+.task__main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.task__main__title {
+  font-family: SemiBold;
+  font-size: 20px;
+  line-height: 140%;
+  color: var(--text);
+}
+
+.task__main__date {
+  margin: 4px 0 2px;
+  font-family: Bold;
+  font-size: 14px;
+  color: var(--subtext);
+}
+
+.task--finished * {
+  text-decoration: line-through;
+}

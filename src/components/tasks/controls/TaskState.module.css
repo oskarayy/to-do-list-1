@@ -1,0 +1,24 @@
+.task__checkbox,
+.task__checkbox--finished {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 22px;
+  width: 22px;
+  margin-right: 15px;
+  border-radius: 50%;
+  box-shadow: 0 0 4px var(--hiddentext);
+  border: 2px solid var(--hiddentext);
+  background-color: var(--hiddentext);
+  cursor: pointer;
+}
+
+.task__checkbox--finished {
+  box-shadow: 0 0 6px var(--text), inset 0 0 2px var(--text);
+  border: 2px solid var(--text);
+  background-color: var(--primary400);
+}
+
+.task__checkbox__icon {
+  font-size: 14px;
+}

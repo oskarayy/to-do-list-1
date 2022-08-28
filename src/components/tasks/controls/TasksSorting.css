@@ -1,0 +1,19 @@
+.task-list__amount {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin: 20px 0;
+  cursor: pointer;
+}
+
+.task-list__amount__item,
+.task-list__amount__item--active {
+  font-family: Regular;
+  color: var(--hiddentext);
+  transition: 0.2s;
+}
+
+.task-list__amount__item--active {
+  font-family: SemiBold;
+  color: var(--text);
+}

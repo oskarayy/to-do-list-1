@@ -1,0 +1,12 @@
+.task__main__time {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-family: SemiBold;
+  font-size: 13px;
+  color: var(--primary500);
+}
+
+.task__main__time span {
+  margin-right: 5px;
+}

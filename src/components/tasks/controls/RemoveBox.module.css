@@ -1,0 +1,25 @@
+.task__removebox {
+  position: relative;
+  flex-basis: 20px;
+  height: 13px;
+  margin-left: 13px;
+  cursor: pointer;
+}
+
+.task__removebox__slash1,
+.task__removebox__slash2 {
+  display: block;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--subtext);
+}
+
+.task__removebox__slash1 {
+  transform: translate(0, -50%) rotate(-45deg);
+}
+.task__removebox__slash2 {
+  transform: translate(0, -50%) rotate(45deg);
+}

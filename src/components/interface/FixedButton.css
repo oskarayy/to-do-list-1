@@ -1,0 +1,45 @@
+.add-task-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 250px;
+  padding: 12px 0;
+  border: none;
+  border-radius: 40px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  font-family: SemiBold;
+  font-size: 18px;
+  text-transform: uppercase;
+  background-color: var(--primary100);
+  color: var(--text);
+  cursor: pointer;
+  transition: 0.4s ease-in;
+  z-index: 10;
+}
+
+.add-task-button--hidden {
+  transform: translate(-50%, 200%);
+}
+
+.add-task-button > .add-task-button__icon {
+  margin-right: 5px;
+  font-size: 0.9em;
+}
+
+@media (hover: hover) {
+  .add-task-button {
+    color: var(--subtext);
+  }
+
+  .add-task-button:hover {
+    box-shadow: 0 -1px 15px rgba(0, 0, 0, 0.3),
+      inset 0 2px 5px rgba(255, 255, 255, 0.2);
+    background-color: var(--primary500);
+    color: #fff;
+  }
+}
