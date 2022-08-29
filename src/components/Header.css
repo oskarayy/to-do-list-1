@@ -7,10 +7,10 @@ header {
 }
 
 header h2 {
-  font-family: Light;
+  font-family: Regular;
   font-weight: normal;
   font-size: 13px;
-  color: var(--hiddentext);
+  color: var(--subtext);
 }
 
 .theme-switch {
