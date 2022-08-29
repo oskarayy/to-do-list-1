@@ -13,7 +13,7 @@
   --text: #532c44;
   --subtext: #995a80;
   --hiddentext: #90597fc0;
-  --primary50: #f5bbddb3;
+  --primary50: #f5bbddaa;
   --primary100: #986683;
   --primary300: #74415b;
   --primary400: #532c44;
@@ -21,21 +21,32 @@
 }
 
 .Background {
-  background-color: var(--hiddentext);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary500);
   min-height: 100vh;
 }
 
 .App {
-  max-width: 700px;
+  width: min(650px, 100%);
   min-height: 100vh;
-  padding: 7.5% 5% 20%;
-  margin: 0 auto;
+  padding: 5% 5% 20%;
   background-color: var(--primary50);
   color: var(--text);
 }
 
-.App * {
-  transition: 0.1s;
+@media (min-width: 651px) {
+  .Background {
+    padding: 2% 0;
+  }
+  .App {
+    min-height: 90vh;
+    padding: 2% 4% 10%;
+    border-radius: 30px;
+    box-shadow: 0px 0px 8px var(--primary50), inset 0 0 4px var(--subtext);
+  }
 }
 
 @font-face {

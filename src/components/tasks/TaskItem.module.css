@@ -3,9 +3,10 @@
   display: flex;
   align-items: center;
   padding: 10px 20px;
-  margin-bottom: 15px;
+  margin: 8px 0;
   border-radius: 10px;
   background-color: var(--primary300);
+  box-shadow: 0 0 5px var(--primary400);
   transition: 0.3s;
 }
 
@@ -28,12 +29,12 @@
 .task__main__title {
   font-family: SemiBold;
   font-size: 16px;
-  line-height: 140%;
+  line-height: 130%;
   color: #f3f3f3;
 }
 
 .task__main__date {
-  margin: 4px 0 2px;
+  margin: 3px 0 2px;
   font-family: Bold;
   font-size: 13px;
   color: #cdb5c4;
@@ -42,4 +43,21 @@
 .task--finished .task__main__title,
 .task--finished .task__main__date {
   text-decoration: line-through;
+}
+
+@media (min-width: 651px) {
+  .task,
+  .task--finished {
+    padding: 10px 25px;
+    margin: 10px 2px;
+  }
+  .task__main__title {
+    line-height: 140%;
+    font-size: 17px;
+  }
+
+  .task__main__date {
+    margin: 2px 0 1px;
+    font-size: 14px;
+  }
 }

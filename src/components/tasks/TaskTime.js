@@ -2,25 +2,36 @@ import { useEffect, useState } from 'react';
 import { getRemainingTime } from '../../utils/getRemainingTime';
 import classes from './TaskTime.module.css';
 
-const TaskTime = ({ time, isFinished }) => {
+const TaskTime = ({ time, isFinished, title }) => {
   const [timerId, setTimerId] = useState(0);
   const [timeToDisplay, setTimeToDisplay] = useState(getRemainingTime(time));
+  const [days, hours, minutes, seconds] = timeToDisplay;
 
   useEffect(() => {
-    const actualTime = new Date().getTime();
-    if (!isFinished && actualTime < time) {
+    const currentTime = new Date().getTime();
+    if (!isFinished && currentTime < time) {
+      //it gives a lot of rerenders but it's very accurate
+      const milisecsToHalfTime = 500 - (currentTime % 500);
       const index = setTimeout(() => {
         const newRemainingTime = getRemainingTime(time);
-        if (newRemainingTime[3] !== timeToDisplay[3]) {
+        if (
+          (newRemainingTime[3] !== seconds && hours < 1 && days < 1) ||
+          (newRemainingTime[2] !== minutes && days < 1) ||
+          newRemainingTime[1] !== hours
+        ) {
           setTimeToDisplay(newRemainingTime);
         }
         setTimerId(index);
-      }, 1000);
+      }, milisecsToHalfTime);
     }
     return () => clearTimeout(timerId);
-  }, [timerId, timeToDisplay, time, isFinished]);
+  }, [timerId, time, isFinished, days, hours, minutes, seconds]);
 
-  const [days, hours, minutes, seconds] = timeToDisplay;
+  const showMinutes =
+    (days > 0 && hours < 1) ||
+    (days < 1 && hours > 0) ||
+    (days < 1 && hours < 1);
+  const showSeconds = hours < 1 && days < 1;
 
   const timeContent = (
     <>
@@ -34,21 +45,19 @@ const TaskTime = ({ time, isFinished }) => {
           {hours} hour{hours > 1 && 's'}
         </span>
       )}
-      {minutes > 0 && days < 1 && (
+      {minutes > 0 && showMinutes && (
         <span>
-          {minutes} minute{minutes > 1 && 's'}
+          {hours > 0 ? minutes + 1 : minutes} minute{minutes > 1 && 's'}
         </span>
       )}
-      {seconds > 0 &&
-        hours < 1 &&
-        days <
-          1(
-            <span>
-              {minutes < 1 && 'Hurry up!'} {seconds} second
-              {seconds > 1 && 's'}
-            </span>
-          )}
-      {!days && !hours && !minutes && !seconds && <span>Time's gone!</span>}
+      {seconds > 0 && showSeconds && (
+        <span>
+          {`${minutes < 1 ? 'Hurry up! ' : ''}${seconds} second${
+            seconds > 1 ? 's' : ''
+          }`}
+        </span>
+      )}
+      {!days && !hours && !minutes && !seconds && <span>Time's over!</span>}
     </>
   );
 

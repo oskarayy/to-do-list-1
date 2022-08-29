@@ -9,8 +9,8 @@
   border-radius: 50%;
   border: 2px solid var(--hiddentext);
   background-color: var(--primary400);
+  transition: 0.3s;
   cursor: pointer;
-  transform: 0.3s;
 }
 
 .task__checkbox--finished {
@@ -20,5 +20,6 @@
 }
 
 .task__checkbox__icon {
-  font-size: 14px;
+  font-size: 13px;
+  color: #f3f3f3;
 }

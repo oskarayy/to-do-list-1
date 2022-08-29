@@ -1,10 +1,23 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateTasksOrder } from '../../store/redux/tasksSlice';
 import { getTasksToRender } from '../../utils/getTasksToRender';
 
+import {
+  DndContext,
+  useSensor,
+  MouseSensor,
+  TouchSensor,
+  closestCenter
+} from '@dnd-kit/core';
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+  arrayMove
+} from '@dnd-kit/sortable';
+
 import TasksSorting from './controls/TasksSorting';
-import Draggable from './dnd/Draggable';
+import NoTasks from '../interface/NoTasks';
 import TaskItem from './TaskItem';
 import './TaskList.css';
 
@@ -15,51 +28,49 @@ const TaskList = () => {
   const savedRenderType = sessionStorage.getItem('savedRenderType') ?? '';
   const [tasksRenderType, setTasksRenderType] = useState(savedRenderType);
 
-  const dragItem = useRef();
-  const dragOverItem = useRef();
-
   const saveRenderTypeHandler = (type) => {
     sessionStorage.setItem('savedRenderType', type);
     setTasksRenderType(type);
   };
 
-  const sortItemsHandler = () => {
-    const updatedList = [...tasks];
+  const sortItemsHandler = ({ active, over }) => {
+    if (active.id !== over.id) {
+      const oldIndex = tasks.findIndex((item) => item.id === active.id);
+      const newIndex = tasks.findIndex((item) => item.id === over.id);
+      const updatedList = arrayMove(tasks, oldIndex, newIndex);
 
-    const draggedItemContent = updatedList.splice(dragItem.current, 1)[0];
-    updatedList.splice(dragOverItem.current, 0, draggedItemContent);
-
-    dragItem.current = null;
-    dragOverItem.current = null;
-
-    dispatch(updateTasksOrder(updatedList));
+      dispatch(updateTasksOrder(updatedList));
+    }
   };
 
   const { tasksToRender, lengths } = getTasksToRender(tasks, tasksRenderType);
-
-  const noTaksContent = (
-    <div className='task-list__empty'>
-      <h3>
-        {tasksRenderType === ''
-          ? 'Your To-Do-List is empty.'
-          : `No ${tasksRenderType} tasks`}
-      </h3>
-      <p>You can add new task using the button on the bottom of your screen!</p>
-      <p>Enjoy!</p>
-    </div>
-  );
+  const sensors = [
+    useSensor(MouseSensor, {
+      activationConstraint: {
+        delay: 150
+      }
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 150
+      }
+    })
+  ];
 
   const tasksListContent = (
     <ul className='task-list__content'>
-      {tasksToRender.map((task, index) => (
-        <Draggable
-          key={task.id}
-          onDragStart={() => (dragItem.current = index)}
-          onDragEnter={() => (dragOverItem.current = index)}
-          onDragEnd={sortItemsHandler}>
-          <TaskItem {...task} />
-        </Draggable>
-      ))}
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={sortItemsHandler}>
+        <SortableContext
+          items={tasks.map((task) => task.id)}
+          strategy={verticalListSortingStrategy}>
+          {tasksToRender.map((task) => (
+            <TaskItem key={task.id} {...task} />
+          ))}
+        </SortableContext>
+      </DndContext>
     </ul>
   );
 
@@ -70,9 +81,11 @@ const TaskList = () => {
         lengths={lengths}
         onClick={saveRenderTypeHandler}
       />
-      {!tasksToRender || tasksToRender.length === 0
-        ? noTaksContent
-        : tasksListContent}
+      {!tasksToRender || tasksToRender.length === 0 ? (
+        <NoTasks type={tasksRenderType} />
+      ) : (
+        tasksListContent
+      )}
     </section>
   );
 };

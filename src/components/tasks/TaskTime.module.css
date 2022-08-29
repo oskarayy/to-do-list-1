@@ -1,16 +1,19 @@
 .task__main__time {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
   font-family: SemiBold;
   font-size: 12px;
-  color: #986683;
-}
-
-.task__main__time span {
-  margin-right: 5px;
+  color: var(--primary500);
 }
 
 .task__main__time__done {
-  filter: brightness(145%);
+  color: #fff;
+}
+
+.task__main__time span {
+  margin-right: 4px;
+}
+
+@media (min-width: 651px) {
+  .task__main__time {
+    font-size: 13px;
+  }
 }

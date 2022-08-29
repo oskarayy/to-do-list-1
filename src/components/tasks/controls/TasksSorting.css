@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-around;
   text-align: center;
-  margin: 20px 0;
+  margin: 20px 0 15px;
   cursor: pointer;
 }
 
@@ -10,10 +10,18 @@
 .task-list__amount__item--active {
   font-family: Regular;
   color: var(--hiddentext);
+  font-size: 15px;
   transition: 0.2s;
 }
 
 .task-list__amount__item--active {
   font-family: Bold;
   color: var(--text);
+}
+
+@media (min-width: 651px) {
+  .task-list__amount__item,
+  .task-list__amount__item--active {
+    font-size: 16px;
+  }
 }

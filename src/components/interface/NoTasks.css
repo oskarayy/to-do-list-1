@@ -1,0 +1,33 @@
+.task-list__empty {
+  padding: 2.5% 5%;
+  text-align: center;
+  color: var(--hiddentext);
+}
+
+#light .task-list__empty {
+  color: var(--primary300);
+}
+
+.task-list__empty h3 {
+  font-family: Bold;
+  font-size: 18px;
+}
+
+.task-list__empty p {
+  margin: 8px 0;
+  font-family: Regular;
+  font-size: 15px;
+}
+
+@media (min-width: 651px) {
+  .task-list__empty {
+    padding: 2.5% 20%;
+  }
+  .task-list__empty h3 {
+    font-size: 19px;
+  }
+  .task-list__empty p {
+    margin: 10px 0;
+    font-size: 16px;
+  }
+}

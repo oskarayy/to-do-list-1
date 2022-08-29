@@ -6,11 +6,20 @@
 
 .banner__title {
   font-family: Bold;
-  font-size: 36px;
+  font-size: 32px;
 }
 
 .banner__subtitle {
-  font-family: ExtraLight;
-  font-size: 18px;
+  font-family: Regular;
+  font-size: 15px;
   color: var(--subtext);
+}
+
+@media (min-width: 651px) {
+  .banner__title {
+    font-size: 38px;
+  }
+  .banner__subtitle {
+    font-size: 16px;
+  }
 }

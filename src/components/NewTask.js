@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTask } from '../store/redux/tasksSlice';
+import { getNextDay } from '../utils/getNextDay';
 
 import FormButton from './interface/FormButton';
 import './NewTask.css';
@@ -15,16 +16,8 @@ const NewTask = ({ onHideForm }) => {
   const time = useRef();
   const date = useRef();
 
-  const currentDate = new Date();
-  const currentTime = currentDate.getTime();
-  const defaultDateValue = currentDate
-    .toLocaleDateString()
-    .split('.')
-    .reverse()
-    .join('-');
-  const defaultTimeValue = `${currentDate.getHours()}:${
-    currentDate.getMinutes() + 1
-  }`;
+  const currentTime = new Date().getTime();
+  const nextDay = getNextDay();
 
   const resetTitleValidation = () => {
     setInputsValid((prevState) => {
@@ -95,14 +88,14 @@ const NewTask = ({ onHideForm }) => {
               id='task-form-time'
               type='time'
               ref={time}
-              defaultValue={defaultTimeValue}
+              defaultValue={'12:00'}
               onChange={resetTimeValidation}
             />
             <input
               id='task-form-date'
               type='date'
               ref={date}
-              defaultValue={defaultDateValue}
+              defaultValue={nextDay}
               onChange={resetTimeValidation}
             />
           </div>
