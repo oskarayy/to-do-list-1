@@ -1,0 +1,40 @@
+.task__grabbox {
+  position: relative;
+  height: 14px;
+  padding: 10px 2.5px 10px 20px;
+  border-radius: 1.5px;
+  cursor: grab;
+}
+
+.task__grabbox__dot1,
+.task__grabbox__dot2,
+.task__grabbox__dot3,
+.task__grabbox__dot1::before,
+.task__grabbox__dot2::before,
+.task__grabbox__dot3::before {
+  display: block;
+  position: absolute;
+  width: 3px;
+  height: 2.2px;
+  border-radius: 1px;
+  background-color: #cdb5c4;
+}
+
+.task__grabbox__dot1 {
+  top: 15%;
+}
+.task__grabbox__dot2 {
+  top: 50%;
+  transform: translateY(-1.1px);
+}
+.task__grabbox__dot3 {
+  top: 85%;
+  transform: translateY(-2.2px);
+}
+
+.task__grabbox__dot1::before,
+.task__grabbox__dot2::before,
+.task__grabbox__dot3::before {
+  content: '';
+  left: -6px;
+}

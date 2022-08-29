@@ -4,10 +4,10 @@ import { getFormattedDate } from '../../utils/getFormattedDate';
 
 import TaskState from './controls/TaskState';
 import TaskTime from './TaskTime';
-import Grabbox from './controls/dnd/Grabbox';
+import Grabbox from './dnd/Grabbox';
 import RemoveBox from './controls/RemoveBox';
 import classes from './TaskItem.module.css';
-import Draggable from './controls/dnd/Draggable';
+import Draggable from './dnd/Draggable';
 
 const TaskItem = ({ id, title, isFinished, time }) => {
   const dispatch = useDispatch();

@@ -1,4 +1,25 @@
+.task-list {
+  flex: 1;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .task-list__content {
   display: flex;
   flex-direction: column;
 }
+
+div#DndDescribedBy-0,
+div#DndLiveRegion-0 {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  background-color: transparent;
+}
+/* 
+div#DndLiveRegion-1 {
+} */

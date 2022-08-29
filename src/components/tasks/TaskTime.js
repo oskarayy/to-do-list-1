@@ -12,17 +12,20 @@ const TaskTime = ({ time, isFinished, title }) => {
     if (!isFinished && currentTime < time) {
       //it gives a lot of rerenders but it's very accurate
       const milisecsToHalfTime = 500 - (currentTime % 500);
-      const index = setTimeout(() => {
-        const newRemainingTime = getRemainingTime(time);
-        if (
-          (newRemainingTime[3] !== seconds && hours < 1 && days < 1) ||
-          (newRemainingTime[2] !== minutes && days < 1) ||
-          newRemainingTime[1] !== hours
-        ) {
-          setTimeToDisplay(newRemainingTime);
-        }
-        setTimerId(index);
-      }, milisecsToHalfTime);
+      const index = setTimeout(
+        () => {
+          const newRemainingTime = getRemainingTime(time);
+          if (
+            (newRemainingTime[3] !== seconds && hours < 1 && days < 1) ||
+            (newRemainingTime[2] !== minutes && days < 1) ||
+            newRemainingTime[1] !== hours
+          ) {
+            setTimeToDisplay(newRemainingTime);
+          }
+          setTimerId(index);
+        },
+        seconds < 4 ? 1000 : milisecsToHalfTime
+      );
     }
     return () => clearTimeout(timerId);
   }, [timerId, time, isFinished, days, hours, minutes, seconds]);
@@ -51,7 +54,7 @@ const TaskTime = ({ time, isFinished, title }) => {
         </span>
       )}
       {seconds > 0 && showSeconds && (
-        <span>
+        <span className={seconds < 4 ? classes['task__main__time__hurry'] : ''}>
           {`${minutes < 1 ? 'Hurry up! ' : ''}${seconds} second${
             seconds > 1 ? 's' : ''
           }`}

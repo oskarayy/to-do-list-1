@@ -8,6 +8,7 @@ import {
   useSensor,
   MouseSensor,
   TouchSensor,
+  KeyboardSensor,
   closestCenter
 } from '@dnd-kit/core';
 import {
@@ -47,31 +48,36 @@ const TaskList = () => {
   const sensors = [
     useSensor(MouseSensor, {
       activationConstraint: {
-        delay: 150
+        delay: 100
       }
     }),
     useSensor(TouchSensor, {
       activationConstraint: {
-        delay: 150
+        delay: 100
+      }
+    }),
+    useSensor(KeyboardSensor, {
+      activationConstraint: {
+        delay: 100
       }
     })
   ];
 
   const tasksListContent = (
-    <ul className='task-list__content'>
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={sortItemsHandler}>
-        <SortableContext
-          items={tasks.map((task) => task.id)}
-          strategy={verticalListSortingStrategy}>
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCenter}
+      onDragEnd={sortItemsHandler}>
+      <SortableContext
+        items={tasks.map((task) => task.id)}
+        strategy={verticalListSortingStrategy}>
+        <ul className='task-list__content'>
           {tasksToRender.map((task) => (
-            <TaskItem key={task.id} {...task} />
+            <TaskItem key={task.id} id={task.id} {...task} />
           ))}
-        </SortableContext>
-      </DndContext>
-    </ul>
+        </ul>
+      </SortableContext>
+    </DndContext>
   );
 
   return (

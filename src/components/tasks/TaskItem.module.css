@@ -8,14 +8,17 @@
   background-color: var(--primary300);
   box-shadow: 0 0 5px var(--primary400);
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .task {
   opacity: 1;
+  filter: saturate(125%);
 }
 
 .task--finished {
   opacity: 0.4;
+  filter: saturate(110%);
 }
 
 .task__main {
@@ -23,7 +26,7 @@
   flex-direction: column;
   justify-content: center;
   flex: 1;
-  margin-right: 10px;
+  padding-right: 10px;
 }
 
 .task__main__title {
@@ -43,13 +46,14 @@
 .task--finished .task__main__title,
 .task--finished .task__main__date {
   text-decoration: line-through;
+  opacity: 0.8;
 }
 
 @media (min-width: 651px) {
   .task,
   .task--finished {
     padding: 10px 25px;
-    margin: 10px 2px;
+    margin: 10px 4px;
   }
   .task__main__title {
     line-height: 140%;

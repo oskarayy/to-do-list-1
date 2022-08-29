@@ -67,7 +67,13 @@
   line-height: 50px;
   text-align: center;
   color: #fbc3e4;
-  resize: none;
+  -webkit-appearance: none;
+}
+
+.new-task__form__item input:focus,
+.new-task__form__item--invalid input:focus {
+  outline: none;
+  box-shadow: 0 0 2px 3px #f3f3f3;
 }
 
 .new-task__form__item--invalid input {

@@ -19,7 +19,17 @@
   background-color: var(--primary400);
 }
 
-.task__checkbox__icon {
+.task__checkbox--finished .task__checkbox__icon,
+.task__checkbox .task__checkbox__icon {
   font-size: 13px;
   color: #f3f3f3;
+  transition: 0.3s;
+}
+
+.task__checkbox .task__checkbox__icon {
+  opacity: 0;
+}
+
+.task__checkbox--finished .task__checkbox__icon {
+  opacity: 1;
 }

@@ -8,12 +8,10 @@ const TaskState = ({ isFinished }) => {
       className={
         classes[isFinished ? 'task__checkbox--finished' : 'task__checkbox']
       }>
-      {isFinished && (
-        <FontAwesomeIcon
-          className={classes['task__checkbox__icon']}
-          icon={faCheck}
-        />
-      )}
+      <FontAwesomeIcon
+        className={classes['task__checkbox__icon']}
+        icon={faCheck}
+      />
     </div>
   );
 };

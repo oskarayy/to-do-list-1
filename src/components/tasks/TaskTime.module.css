@@ -1,4 +1,5 @@
-.task__main__time {
+.task__main__time,
+.task__main__time__hurry {
   font-family: SemiBold;
   font-size: 12px;
   color: var(--primary500);
@@ -12,8 +13,25 @@
   margin-right: 4px;
 }
 
+.task__main__time__hurry {
+  animation: blink 1s linear 3 forwards;
+}
+
 @media (min-width: 651px) {
-  .task__main__time {
+  .task__main__time,
+  .task__main__time__hurry {
     font-size: 13px;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    filter: 0.3;
   }
 }

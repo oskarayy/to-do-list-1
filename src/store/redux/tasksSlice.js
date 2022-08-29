@@ -1,4 +1,5 @@
-const { createSlice } = require('@reduxjs/toolkit');
+import { createSlice } from '@reduxjs/toolkit';
+import { arrayMove } from '@dnd-kit/sortable';
 
 const tasksSlice = createSlice({
   name: 'tasks',
@@ -7,7 +8,19 @@ const tasksSlice = createSlice({
   },
   reducers: {
     addTask: (state, action) => {
-      state.tasks = [action.payload.task, ...state.tasks];
+      const newTasks = [action.payload.task, ...state.tasks];
+      const sortedTasks = newTasks.reduce((acc, task, index) => {
+        if (task.time > acc[index - 1]?.time) acc.push(task);
+        else if (task.time < acc[index - 1]?.time) acc.unshift(task);
+        else {
+          // put task before another one with the same deadline
+          acc.push(task);
+          arrayMove(acc, acc.length - 1, index);
+        }
+        return acc;
+      }, []);
+
+      state.tasks = sortedTasks;
       localStorage.setItem('tasks', JSON.stringify(state.tasks));
     },
     removeTask: (state, action) => {

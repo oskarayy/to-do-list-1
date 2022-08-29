@@ -16,12 +16,11 @@ const Draggable = ({ children, id }) => {
     transform: CSS.Translate.toString(transform),
     listStyle: 'none',
     touchAction: 'none',
-    opacity: isDragging ? '0.6' : '1',
-    cursor: isDragging ? 'grabbing' : 'grab'
+    filter: isDragging ? 'blur(3px)' : 'none'
   };
 
   return (
-    <li ref={setNodeRef} {...listeners} {...attributes} style={style}>
+    <li {...listeners} {...attributes} id={id} ref={setNodeRef} style={style}>
       {children}
     </li>
   );
