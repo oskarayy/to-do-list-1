@@ -51,7 +51,7 @@ const NewTask = ({ onHideForm }) => {
         time: timeIsValid
       });
 
-    dispatch(addTask({ task: newTask }));
+    dispatch(addTask(newTask));
     onHideForm();
   };
 

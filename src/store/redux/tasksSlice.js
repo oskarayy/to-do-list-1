@@ -1,5 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { arrayMove } from '@dnd-kit/sortable';
+
+const getUpdatedTaskList = (state, newTask) => {
+  let newList;
+  let stop;
+
+  state.forEach((task, index) => {
+    if (!stop && newTask.time <= state[index].time) {
+      const itemsWithLessTime = state.slice(0, index);
+      const itemsWithMoreTime = state.slice(index, state.length);
+      console.log(
+        'less' + itemsWithLessTime[itemsWithLessTime.length - 1]?.title
+      );
+      console.log('more' + itemsWithMoreTime[0]?.title);
+      newList = [...itemsWithLessTime, newTask, ...itemsWithMoreTime];
+      return (stop = true);
+    } else if (!stop) newList = [...state, newTask];
+  });
+
+  return newList ?? [newTask];
+};
 
 const tasksSlice = createSlice({
   name: 'tasks',
@@ -8,19 +27,8 @@ const tasksSlice = createSlice({
   },
   reducers: {
     addTask: (state, action) => {
-      const newTasks = [action.payload.task, ...state.tasks];
-      const sortedTasks = newTasks.reduce((acc, task, index) => {
-        if (task.time > acc[index - 1]?.time) acc.push(task);
-        else if (task.time < acc[index - 1]?.time) acc.unshift(task);
-        else {
-          // put task before another one with the same deadline
-          acc.push(task);
-          arrayMove(acc, acc.length - 1, index);
-        }
-        return acc;
-      }, []);
-
-      state.tasks = sortedTasks;
+      const newTask = action.payload;
+      state.tasks = getUpdatedTaskList(state.tasks, newTask);
       localStorage.setItem('tasks', JSON.stringify(state.tasks));
     },
     removeTask: (state, action) => {

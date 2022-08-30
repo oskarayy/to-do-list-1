@@ -54,7 +54,10 @@ const TaskTime = ({ time, isFinished, title }) => {
         </span>
       )}
       {seconds > 0 && showSeconds && (
-        <span className={seconds < 4 ? classes['task__main__time__hurry'] : ''}>
+        <span
+          className={
+            seconds < 4 && minutes < 1 ? classes['task__main__time__hurry'] : ''
+          }>
           {`${minutes < 1 ? 'Hurry up! ' : ''}${seconds} second${
             seconds > 1 ? 's' : ''
           }`}
