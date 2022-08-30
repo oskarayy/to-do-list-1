@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/to-do-list-1/static/css/main.87cf5c0c.css",
-    "main.js": "/to-do-list-1/static/js/main.fe65866c.js",
+    "main.js": "/to-do-list-1/static/js/main.bef76f0c.js",
     "static/media/Kodchasan-SemiBold.ttf": "/to-do-list-1/static/media/Kodchasan-SemiBold.e0f6f7eb53e81a0766a4.ttf",
     "static/media/Kodchasan-Medium.ttf": "/to-do-list-1/static/media/Kodchasan-Medium.7e20b0f0440c16549db3.ttf",
     "static/media/Kodchasan-Bold.ttf": "/to-do-list-1/static/media/Kodchasan-Bold.81885c0136c74c8ba34c.ttf",
@@ -10,10 +10,10 @@
     "static/media/Kodchasan-ExtraLight.ttf": "/to-do-list-1/static/media/Kodchasan-ExtraLight.483254e08a3431a2803a.ttf",
     "index.html": "/to-do-list-1/index.html",
     "main.87cf5c0c.css.map": "/to-do-list-1/static/css/main.87cf5c0c.css.map",
-    "main.fe65866c.js.map": "/to-do-list-1/static/js/main.fe65866c.js.map"
+    "main.bef76f0c.js.map": "/to-do-list-1/static/js/main.bef76f0c.js.map"
   },
   "entrypoints": [
     "static/css/main.87cf5c0c.css",
-    "static/js/main.fe65866c.js"
+    "static/js/main.bef76f0c.js"
   ]
 }
